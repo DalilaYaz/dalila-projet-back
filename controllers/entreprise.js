@@ -38,6 +38,15 @@ exports.create = [
     .isISO8601()
     .toDate(),
 
+    body("salarie")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("Company name must be specified.")
+    .isAlphanumeric()
+    .withMessage("Company name has non-alphanumeric characters."),
+
+
   (req, res, next) => {
 
     const errors = validationResult(req);
@@ -48,6 +57,7 @@ exports.create = [
       companySiret: req.body.companySiret,
       email: req.body.email,
       dateOfCreation: req.body.dateOfCreation,
+      salarie: req.body.salarie, 
     });
 
     if (!errors.isEmpty()) {
@@ -158,6 +168,14 @@ exports.update = [
     .isISO8601()
     .toDate(),
 
+    body("salarie")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("Company name must be specified.")
+    .isAlphanumeric()
+    .withMessage("Company name has non-alphanumeric characters."),
+
   (req, res, next) => {
 
     const errors = validationResult(req);
@@ -168,6 +186,7 @@ exports.update = [
       companySiret: req.body.companySiret,
       email: req.body.email,
       dateOfCreation: req.body.dateOfCreation,
+      salarie: req.body.salarie, 
     });
 
     if (!errors.isEmpty()) {

@@ -32,6 +32,8 @@ var entrepriseSchema = new mongoose.Schema({
 
     transform: (x) => DateTime.fromJSDate(x).toISODate(),
   },
+
+  salarie: { type: Number, required: true, ref: "salaries"},
 });
 
 entrepriseSchema.set("toJSON", {
