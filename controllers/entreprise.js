@@ -74,7 +74,9 @@ exports.create = [
 ];
 
 exports.getAll = function (req, res, next) {
-  Entreprise.find().exec(function (err, result) {
+  Entreprise.find()
+  .populate("salarie")
+  .exec(function (err, result) {
     if (err) {
       return res.status(500).json(err);
     }
@@ -98,7 +100,9 @@ exports.getById = [
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     } else {
-      Entreprise.findById(req.params.id).exec(function (err, result) {
+      Entreprise.findById(req.params.id)
+      .populate("salarie")
+      .exec(function (err, result) {
         if (err) {
           return res.status(500).json(err);
         }
